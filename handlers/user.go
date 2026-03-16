@@ -18,7 +18,7 @@ func UserLoginQuery() bee.Handler {
 		err := req.Bind(&q)
 		if err != nil || len(q.Code) < 1 {
 			logger.Error().Err(err).Msg("UserLoginQuery")
-			req.ResponseError(http.StatusBadRequest, "参数错误")
+			req.ResponseError(http.StatusBadRequest)
 			return
 		}
 		srv.Login(q.Code)
