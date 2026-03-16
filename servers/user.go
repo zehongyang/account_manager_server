@@ -8,8 +8,8 @@ import (
 
 const (
 	WxLoginUrl = "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code"
-	AppId      = "wx0911d3b30bc0c1b9"
-	AppSecret  = "cb36077dbcd864775c27e15b78bf5fa8"
+	AppId      = ""
+	AppSecret  = ""
 )
 
 type UserLoginServer struct {
