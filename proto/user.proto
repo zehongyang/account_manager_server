@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "./pb;pb";
+package user;
+
+message UserLoginQuery{
+  string code = 1;
+}
+
+message UserLoginQueryResponse{
+
+}
+
+message WxLoginPayload{
+  string session_key = 1;
+  string unionid = 2;
+  string openid = 3;
+  int32 errcode = 4;
+  string errmsg  = 5;
+}
