@@ -1,6 +1,9 @@
 package servers
 
-import "testing"
+import (
+	"account_manager/db"
+	"testing"
+)
 
 func TestWxCodeLogin(t *testing.T) {
 	srv := GetUserLoginServer()
@@ -14,4 +17,9 @@ func TestWxCodeLogin(t *testing.T) {
 func TestEnv(t *testing.T) {
 	srv := GetUserLoginServer()
 	t.Log(srv.cfg)
+}
+
+func TestDb(t *testing.T) {
+	dbUser := db.GetDBUser()
+	t.Log(dbUser)
 }
