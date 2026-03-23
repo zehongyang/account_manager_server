@@ -10,3 +10,8 @@ func TestWxCodeLogin(t *testing.T) {
 	}
 	t.Log(res)
 }
+
+func TestEnv(t *testing.T) {
+	srv := GetUserLoginServer()
+	t.Log(srv.cfg)
+}
