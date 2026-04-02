@@ -2,6 +2,13 @@ package handlers
 
 import "github.com/zehongyang/bee"
 
+type Header struct {
+	Uid       int64  `header:"Uid"`
+	Token     string `header:"Token"`
+	Timestamp int64  `header:"Timestamp"`
+	FileHash  string `header:"FileHash"`
+}
+
 func Cors() bee.Handler {
 	return func(c bee.IContext) {
 		method := c.GetMethod()

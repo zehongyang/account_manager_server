@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./pb;pb";
+package upload;
+
+//文件上传
+message FileUploadQuery{
+
+}
+
+message FileUploadQueryResponse{
+  string fileName = 1;
+}

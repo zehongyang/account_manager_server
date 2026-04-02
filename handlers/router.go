@@ -9,4 +9,5 @@ func InitRouter(srv *bee.HttpServer) {
 		return
 	}
 	srv.Post("/login", UserLoginQuery())
+	srv.Post("/upload", FileUploadQuery())
 }
