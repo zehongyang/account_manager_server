@@ -2,10 +2,13 @@ package servers
 
 import (
 	"account_manager/proto/pb"
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"github.com/zehongyang/bee/config"
 	"github.com/zehongyang/bee/logger"
 	"github.com/zehongyang/bee/utils"
+	"math/rand"
 )
 
 const (
@@ -40,4 +43,10 @@ func (s *UserLoginServer) Login(code string) (*pb.WxLoginPayload, error) {
 		return nil, err
 	}
 	return &res, nil
+}
+
+func (s *UserLoginServer) GenerateToken() string {
+	str := fmt.Sprintf("%d%d", utils.Now(), rand.Int())
+	sum := md5.Sum([]byte(str))
+	return hex.EncodeToString(sum[:])
 }

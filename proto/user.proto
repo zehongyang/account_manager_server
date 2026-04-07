@@ -7,7 +7,8 @@ message UserLoginQuery{
 }
 
 message UserLoginQueryResponse{
-
+  string token  = 1;
+  UserInfo user = 2;
 }
 
 message WxLoginPayload{
@@ -16,4 +17,11 @@ message WxLoginPayload{
   string openid = 3;
   int32 errcode = 4;
   string errmsg  = 5;
+}
+
+
+message UserInfo{
+  int64 id = 1;
+  string nickname = 2;
+  string avatar = 3;
 }

@@ -67,6 +67,8 @@ func (x *UserLoginQuery) GetCode() string {
 
 type UserLoginQueryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	User          *UserInfo              `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -99,6 +101,20 @@ func (x *UserLoginQueryResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UserLoginQueryResponse.ProtoReflect.Descriptor instead.
 func (*UserLoginQueryResponse) Descriptor() ([]byte, []int) {
 	return file_user_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UserLoginQueryResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *UserLoginQueryResponse) GetUser() *UserInfo {
+	if x != nil {
+		return x.User
+	}
+	return nil
 }
 
 type WxLoginPayload struct {
@@ -177,6 +193,66 @@ func (x *WxLoginPayload) GetErrmsg() string {
 	return ""
 }
 
+type UserInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Avatar        string                 `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserInfo) Reset() {
+	*x = UserInfo{}
+	mi := &file_user_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserInfo) ProtoMessage() {}
+
+func (x *UserInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserInfo.ProtoReflect.Descriptor instead.
+func (*UserInfo) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *UserInfo) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UserInfo) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *UserInfo) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -184,15 +260,21 @@ const file_user_proto_rawDesc = "" +
 	"\n" +
 	"user.proto\x12\x04user\"$\n" +
 	"\x0eUserLoginQuery\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\"\x18\n" +
-	"\x16UserLoginQueryResponse\"\x95\x01\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"R\n" +
+	"\x16UserLoginQueryResponse\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\"\n" +
+	"\x04user\x18\x02 \x01(\v2\x0e.user.UserInfoR\x04user\"\x95\x01\n" +
 	"\x0eWxLoginPayload\x12\x1f\n" +
 	"\vsession_key\x18\x01 \x01(\tR\n" +
 	"sessionKey\x12\x18\n" +
 	"\aunionid\x18\x02 \x01(\tR\aunionid\x12\x16\n" +
 	"\x06openid\x18\x03 \x01(\tR\x06openid\x12\x18\n" +
 	"\aerrcode\x18\x04 \x01(\x05R\aerrcode\x12\x16\n" +
-	"\x06errmsg\x18\x05 \x01(\tR\x06errmsgB\tZ\a./pb;pbb\x06proto3"
+	"\x06errmsg\x18\x05 \x01(\tR\x06errmsg\"N\n" +
+	"\bUserInfo\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
+	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x16\n" +
+	"\x06avatar\x18\x03 \x01(\tR\x06avatarB\tZ\a./pb;pbb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -206,18 +288,20 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_user_proto_goTypes = []any{
 	(*UserLoginQuery)(nil),         // 0: user.UserLoginQuery
 	(*UserLoginQueryResponse)(nil), // 1: user.UserLoginQueryResponse
 	(*WxLoginPayload)(nil),         // 2: user.WxLoginPayload
+	(*UserInfo)(nil),               // 3: user.UserInfo
 }
 var file_user_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	3, // 0: user.UserLoginQueryResponse.user:type_name -> user.UserInfo
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
@@ -231,7 +315,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
