@@ -198,6 +198,8 @@ type UserInfo struct {
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
 	Avatar        string                 `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Payload       string                 `protobuf:"bytes,4,opt,name=payload,proto3" json:"payload,omitempty"`
+	Key           string                 `protobuf:"bytes,5,opt,name=key,proto3" json:"key,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -253,6 +255,303 @@ func (x *UserInfo) GetAvatar() string {
 	return ""
 }
 
+func (x *UserInfo) GetPayload() string {
+	if x != nil {
+		return x.Payload
+	}
+	return ""
+}
+
+func (x *UserInfo) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+// 修改用户信息
+type UserInfoModifyQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Avatar        string                 `protobuf:"bytes,1,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserInfoModifyQuery) Reset() {
+	*x = UserInfoModifyQuery{}
+	mi := &file_user_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserInfoModifyQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserInfoModifyQuery) ProtoMessage() {}
+
+func (x *UserInfoModifyQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserInfoModifyQuery.ProtoReflect.Descriptor instead.
+func (*UserInfoModifyQuery) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UserInfoModifyQuery) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *UserInfoModifyQuery) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+type UserInfoModifyQueryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserInfoModifyQueryResponse) Reset() {
+	*x = UserInfoModifyQueryResponse{}
+	mi := &file_user_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserInfoModifyQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserInfoModifyQueryResponse) ProtoMessage() {}
+
+func (x *UserInfoModifyQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserInfoModifyQueryResponse.ProtoReflect.Descriptor instead.
+func (*UserInfoModifyQueryResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{5}
+}
+
+// 主密钥信息设置
+type MasterKeySetQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Payload       string                 `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	Ciphertext    string                 `protobuf:"bytes,2,opt,name=ciphertext,proto3" json:"ciphertext,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MasterKeySetQuery) Reset() {
+	*x = MasterKeySetQuery{}
+	mi := &file_user_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MasterKeySetQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MasterKeySetQuery) ProtoMessage() {}
+
+func (x *MasterKeySetQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MasterKeySetQuery.ProtoReflect.Descriptor instead.
+func (*MasterKeySetQuery) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *MasterKeySetQuery) GetPayload() string {
+	if x != nil {
+		return x.Payload
+	}
+	return ""
+}
+
+func (x *MasterKeySetQuery) GetCiphertext() string {
+	if x != nil {
+		return x.Ciphertext
+	}
+	return ""
+}
+
+type MasterKeySetQueryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MasterKeySetQueryResponse) Reset() {
+	*x = MasterKeySetQueryResponse{}
+	mi := &file_user_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MasterKeySetQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MasterKeySetQueryResponse) ProtoMessage() {}
+
+func (x *MasterKeySetQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MasterKeySetQueryResponse.ProtoReflect.Descriptor instead.
+func (*MasterKeySetQueryResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *MasterKeySetQueryResponse) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+// 主密钥校验
+type MasterKeyVerifyQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ciphertext    string                 `protobuf:"bytes,1,opt,name=ciphertext,proto3" json:"ciphertext,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MasterKeyVerifyQuery) Reset() {
+	*x = MasterKeyVerifyQuery{}
+	mi := &file_user_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MasterKeyVerifyQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MasterKeyVerifyQuery) ProtoMessage() {}
+
+func (x *MasterKeyVerifyQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MasterKeyVerifyQuery.ProtoReflect.Descriptor instead.
+func (*MasterKeyVerifyQuery) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *MasterKeyVerifyQuery) GetCiphertext() string {
+	if x != nil {
+		return x.Ciphertext
+	}
+	return ""
+}
+
+type MasterKeyVerifyQueryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Ok            bool                   `protobuf:"varint,2,opt,name=ok,proto3" json:"ok,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MasterKeyVerifyQueryResponse) Reset() {
+	*x = MasterKeyVerifyQueryResponse{}
+	mi := &file_user_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MasterKeyVerifyQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MasterKeyVerifyQueryResponse) ProtoMessage() {}
+
+func (x *MasterKeyVerifyQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MasterKeyVerifyQueryResponse.ProtoReflect.Descriptor instead.
+func (*MasterKeyVerifyQueryResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *MasterKeyVerifyQueryResponse) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *MasterKeyVerifyQueryResponse) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -270,11 +569,31 @@ const file_user_proto_rawDesc = "" +
 	"\aunionid\x18\x02 \x01(\tR\aunionid\x12\x16\n" +
 	"\x06openid\x18\x03 \x01(\tR\x06openid\x12\x18\n" +
 	"\aerrcode\x18\x04 \x01(\x05R\aerrcode\x12\x16\n" +
-	"\x06errmsg\x18\x05 \x01(\tR\x06errmsg\"N\n" +
+	"\x06errmsg\x18\x05 \x01(\tR\x06errmsg\"z\n" +
 	"\bUserInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x16\n" +
-	"\x06avatar\x18\x03 \x01(\tR\x06avatarB\tZ\a./pb;pbb\x06proto3"
+	"\x06avatar\x18\x03 \x01(\tR\x06avatar\x12\x18\n" +
+	"\apayload\x18\x04 \x01(\tR\apayload\x12\x10\n" +
+	"\x03key\x18\x05 \x01(\tR\x03key\"I\n" +
+	"\x13UserInfoModifyQuery\x12\x16\n" +
+	"\x06avatar\x18\x01 \x01(\tR\x06avatar\x12\x1a\n" +
+	"\bnickname\x18\x02 \x01(\tR\bnickname\"\x1d\n" +
+	"\x1bUserInfoModifyQueryResponse\"M\n" +
+	"\x11MasterKeySetQuery\x12\x18\n" +
+	"\apayload\x18\x01 \x01(\tR\apayload\x12\x1e\n" +
+	"\n" +
+	"ciphertext\x18\x02 \x01(\tR\n" +
+	"ciphertext\"-\n" +
+	"\x19MasterKeySetQueryResponse\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\"6\n" +
+	"\x14MasterKeyVerifyQuery\x12\x1e\n" +
+	"\n" +
+	"ciphertext\x18\x01 \x01(\tR\n" +
+	"ciphertext\"@\n" +
+	"\x1cMasterKeyVerifyQueryResponse\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x0e\n" +
+	"\x02ok\x18\x02 \x01(\bR\x02okB\tZ\a./pb;pbb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -288,12 +607,18 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_user_proto_goTypes = []any{
-	(*UserLoginQuery)(nil),         // 0: user.UserLoginQuery
-	(*UserLoginQueryResponse)(nil), // 1: user.UserLoginQueryResponse
-	(*WxLoginPayload)(nil),         // 2: user.WxLoginPayload
-	(*UserInfo)(nil),               // 3: user.UserInfo
+	(*UserLoginQuery)(nil),               // 0: user.UserLoginQuery
+	(*UserLoginQueryResponse)(nil),       // 1: user.UserLoginQueryResponse
+	(*WxLoginPayload)(nil),               // 2: user.WxLoginPayload
+	(*UserInfo)(nil),                     // 3: user.UserInfo
+	(*UserInfoModifyQuery)(nil),          // 4: user.UserInfoModifyQuery
+	(*UserInfoModifyQueryResponse)(nil),  // 5: user.UserInfoModifyQueryResponse
+	(*MasterKeySetQuery)(nil),            // 6: user.MasterKeySetQuery
+	(*MasterKeySetQueryResponse)(nil),    // 7: user.MasterKeySetQueryResponse
+	(*MasterKeyVerifyQuery)(nil),         // 8: user.MasterKeyVerifyQuery
+	(*MasterKeyVerifyQueryResponse)(nil), // 9: user.MasterKeyVerifyQueryResponse
 }
 var file_user_proto_depIdxs = []int32{
 	3, // 0: user.UserLoginQueryResponse.user:type_name -> user.UserInfo
@@ -315,7 +640,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

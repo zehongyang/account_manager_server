@@ -2,10 +2,11 @@ package db
 
 import (
 	"account_manager/models"
+	"time"
+
 	"github.com/zehongyang/bee/caches"
 	"github.com/zehongyang/bee/dbs"
 	"github.com/zehongyang/bee/utils"
-	"time"
 )
 
 type DBUser struct {
@@ -18,14 +19,14 @@ var GetDBUser = utils.Single(func() *DBUser {
 })
 
 func (s *DBUser) Upsert(v *models.User) error {
-	sql := "INSERT INTO `user` (openid,token,ctm,ltm,lip,cip) VALUES(?,?,?,?,?,?) ON CONFLICT(openid) DO UPDATE SET ltm=?,lip=? RETURNING id"
-	_, err := s.db.Num(0).SQL(sql, v.Openid, v.Token, v.Ctm, v.Ltm, v.Lip, v.Cip, v.Ltm, v.Lip).Get(&v.Id)
+	sql := "INSERT INTO `user` (openid,token,ctm,ltm,lip,cip) VALUES(?,?,?,?,?,?) ON CONFLICT(openid) DO UPDATE SET ltm=?,lip=? RETURNING *"
+	_, err := s.db.Num(0).SQL(sql, v.Openid, v.Token, v.Ctm, v.Ltm, v.Lip, v.Cip, v.Ltm, v.Lip).Get(v)
 	return err
 }
 
 func (s *DBUser) GetUser(uid int64) (*models.User, error) {
 	var u models.User
-	has, err := s.db.Num(uid).Where("uid=?", uid).Get(&u)
+	has, err := s.db.Num(uid).Where("id=?", uid).Get(&u)
 	if err != nil {
 		return nil, err
 	}
@@ -46,4 +47,12 @@ func (s *DBUser) GetUserCache(uid int64) (*models.User, error) {
 	}
 	s.cache.Add(uid, user)
 	return user, nil
+}
+
+func (s *DBUser) Modify(v models.User, cols ...string) (int64, error) {
+	ses := s.db.Num(int64(v.Id)).Where("id=?", v.Id)
+	if len(cols) > 0 {
+		ses.Cols(cols...)
+	}
+	return ses.Update(v)
 }

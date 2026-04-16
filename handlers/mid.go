@@ -5,10 +5,11 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"net/http"
+
 	"github.com/zehongyang/bee"
 	"github.com/zehongyang/bee/logger"
 	"github.com/zehongyang/bee/utils"
-	"net/http"
 )
 
 type Header struct {
@@ -64,12 +65,18 @@ func Auth() bee.Handler {
 			c.ResponseError(http.StatusBadRequest)
 			return
 		}
-		sum := md5.Sum([]byte(fmt.Sprintf("%s%d%d", user.Token, h.Uid, h.Timestamp)))
+		var toCheckStr = fmt.Sprintf("%s%d%d", user.Token, h.Uid, h.Timestamp)
+		if len(user.Ciphertext) > 0 {
+			sum := md5.Sum([]byte(fmt.Sprintf("%s", user.Ciphertext)))
+			toCheckStr = fmt.Sprintf("%s%d%d%s", user.Token, h.Uid, h.Timestamp, hex.EncodeToString(sum[:]))
+		}
+		sum := md5.Sum([]byte(toCheckStr))
 		if hex.EncodeToString(sum[:]) != h.Token {
 			logger.Error().Err(err).Any("h", h).Msg("auth")
 			c.ResponseError(http.StatusUnauthorized)
 			return
 		}
+		c.SetAccount(bee.AccountInfo{Uid: h.Uid})
 		c.Next()
 	}
 }

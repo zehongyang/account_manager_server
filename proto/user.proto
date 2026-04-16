@@ -24,4 +24,36 @@ message UserInfo{
   int64 id = 1;
   string nickname = 2;
   string avatar = 3;
+  string payload = 4;
+  string key = 5;
+}
+
+//修改用户信息
+message UserInfoModifyQuery{
+  string avatar = 1;
+  string nickname = 2;
+}
+
+message UserInfoModifyQueryResponse{
+
+}
+
+//主密钥信息设置
+message MasterKeySetQuery{
+  string payload = 1;
+  string ciphertext = 2;
+}
+
+message MasterKeySetQueryResponse{
+  string key = 1;
+}
+
+//主密钥校验
+message MasterKeyVerifyQuery{
+  string ciphertext = 1;
+}
+
+message MasterKeyVerifyQueryResponse{
+  string key = 1;
+  bool ok = 2;
 }
