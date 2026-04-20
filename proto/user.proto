@@ -57,3 +57,33 @@ message MasterKeyVerifyQueryResponse{
   string key = 1;
   bool ok = 2;
 }
+
+//添加应用
+message AppAddQuery{
+  string name = 1;
+  AppPayload payload = 2;
+}
+
+message AppAddQueryResponse{
+
+}
+
+message AppPayload{
+  string accountPayload = 1;
+  string pwdPayload = 2;
+}
+
+//应用列表
+message AppListQuery{
+  int64 id = 1;
+}
+
+message AppListQueryResponse{
+  repeated AppInfo lists = 1;
+}
+
+message AppInfo{
+  int64 id = 1;
+  string name = 2;
+  AppPayload payload = 3;
+}

@@ -7,6 +7,7 @@ import (
 	"account_manager/servers"
 	"crypto/md5"
 	"encoding/hex"
+	"encoding/json"
 	"net/http"
 
 	"github.com/zehongyang/bee"
@@ -156,6 +157,94 @@ func MasterKeyVerifyQuery() bee.Handler {
 		if res.Ok {
 			sum := md5.Sum([]byte(q.Ciphertext))
 			res.Key = hex.EncodeToString(sum[:])
+		}
+		req.ResponseOk(&res)
+	}
+}
+
+func AppAddQuery() bee.Handler {
+	dbApp := db.GetDBApp()
+	return func(req bee.IContext) {
+		var (
+			q   pb.AppAddQuery
+			res pb.AppAddQueryResponse
+		)
+		uid := req.GetAccount().GetUid()
+		err := req.Bind(&q)
+		if err != nil || len(q.Name) < 1 || q.Payload == nil || len(q.Payload.AccountPayload) < 1 ||
+			len(q.Payload.PwdPayload) < 1 {
+			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppAddQuery")
+			req.ResponseError(http.StatusBadRequest)
+			return
+		}
+		exists, err := dbApp.Exists(uid, q.Name)
+		if err != nil {
+			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppAddQuery")
+			req.ResponseError(http.StatusInternalServerError)
+			return
+		}
+		if exists {
+			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppAddQuery")
+			req.ResponseError(http.StatusBadRequest, "应用已存在")
+			return
+		}
+		strPayload, err := json.Marshal(q.Payload)
+		if err != nil {
+			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppAddQuery")
+			req.ResponseError(http.StatusInternalServerError)
+			return
+		}
+		_, err = dbApp.Create(models.App{
+			Name:    q.Name,
+			Uid:     int(uid),
+			Payload: string(strPayload),
+			Ctm:     utils.Now(),
+		})
+		if err != nil {
+			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppAddQuery")
+			req.ResponseError(http.StatusInternalServerError)
+			return
+		}
+		req.ResponseOk(&res)
+	}
+}
+
+func AppListQuery() bee.Handler {
+	dbApp := db.GetDBApp()
+	return func(req bee.IContext) {
+		var (
+			q   pb.AppListQuery
+			res pb.AppListQueryResponse
+		)
+		uid := req.GetAccount().GetUid()
+		err := req.Bind(&q)
+		if err != nil || q.Id < 1 {
+			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppListQuery")
+			req.ResponseError(http.StatusBadRequest)
+			return
+		}
+		apps, err := dbApp.List(uid, q.Id, 20)
+		if err != nil {
+			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppListQuery")
+			req.ResponseError(http.StatusInternalServerError)
+			return
+		}
+		for _, app := range apps {
+			var pai = &pb.AppInfo{
+				Id:   int64(app.Id),
+				Name: app.Name,
+			}
+			if len(app.Payload) > 0 {
+				var payload pb.AppPayload
+				err = json.Unmarshal([]byte(app.Payload), &payload)
+				if err != nil {
+					logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppListQuery")
+					req.ResponseError(http.StatusInternalServerError)
+					return
+				}
+				pai.Payload = &payload
+			}
+			res.Lists = append(res.Lists, pai)
 		}
 		req.ResponseOk(&res)
 	}

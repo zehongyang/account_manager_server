@@ -15,4 +15,6 @@ func InitRouter(srv *bee.HttpServer) {
 	authGroup.Post("/user/modify", UserInfoModifyQuery())
 	authGroup.Post("/key/set", MasterKeySetQuery())
 	authGroup.Post("/key/verify", MasterKeyVerifyQuery())
+	authGroup.Post("/app/add", AppAddQuery())
+	authGroup.Post("/app/list", AppListQuery())
 }

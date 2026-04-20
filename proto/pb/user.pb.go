@@ -552,6 +552,296 @@ func (x *MasterKeyVerifyQueryResponse) GetOk() bool {
 	return false
 }
 
+// 添加应用
+type AppAddQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Payload       *AppPayload            `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppAddQuery) Reset() {
+	*x = AppAddQuery{}
+	mi := &file_user_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppAddQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppAddQuery) ProtoMessage() {}
+
+func (x *AppAddQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppAddQuery.ProtoReflect.Descriptor instead.
+func (*AppAddQuery) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *AppAddQuery) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *AppAddQuery) GetPayload() *AppPayload {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+type AppAddQueryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppAddQueryResponse) Reset() {
+	*x = AppAddQueryResponse{}
+	mi := &file_user_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppAddQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppAddQueryResponse) ProtoMessage() {}
+
+func (x *AppAddQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppAddQueryResponse.ProtoReflect.Descriptor instead.
+func (*AppAddQueryResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{11}
+}
+
+type AppPayload struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	AccountPayload string                 `protobuf:"bytes,1,opt,name=accountPayload,proto3" json:"accountPayload,omitempty"`
+	PwdPayload     string                 `protobuf:"bytes,2,opt,name=pwdPayload,proto3" json:"pwdPayload,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AppPayload) Reset() {
+	*x = AppPayload{}
+	mi := &file_user_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppPayload) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppPayload) ProtoMessage() {}
+
+func (x *AppPayload) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppPayload.ProtoReflect.Descriptor instead.
+func (*AppPayload) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *AppPayload) GetAccountPayload() string {
+	if x != nil {
+		return x.AccountPayload
+	}
+	return ""
+}
+
+func (x *AppPayload) GetPwdPayload() string {
+	if x != nil {
+		return x.PwdPayload
+	}
+	return ""
+}
+
+// 应用列表
+type AppListQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppListQuery) Reset() {
+	*x = AppListQuery{}
+	mi := &file_user_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppListQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppListQuery) ProtoMessage() {}
+
+func (x *AppListQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppListQuery.ProtoReflect.Descriptor instead.
+func (*AppListQuery) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *AppListQuery) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type AppListQueryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Lists         []*AppInfo             `protobuf:"bytes,1,rep,name=lists,proto3" json:"lists,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppListQueryResponse) Reset() {
+	*x = AppListQueryResponse{}
+	mi := &file_user_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppListQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppListQueryResponse) ProtoMessage() {}
+
+func (x *AppListQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppListQueryResponse.ProtoReflect.Descriptor instead.
+func (*AppListQueryResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *AppListQueryResponse) GetLists() []*AppInfo {
+	if x != nil {
+		return x.Lists
+	}
+	return nil
+}
+
+type AppInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Payload       *AppPayload            `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppInfo) Reset() {
+	*x = AppInfo{}
+	mi := &file_user_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppInfo) ProtoMessage() {}
+
+func (x *AppInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppInfo.ProtoReflect.Descriptor instead.
+func (*AppInfo) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *AppInfo) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *AppInfo) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *AppInfo) GetPayload() *AppPayload {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -593,7 +883,25 @@ const file_user_proto_rawDesc = "" +
 	"ciphertext\"@\n" +
 	"\x1cMasterKeyVerifyQueryResponse\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x0e\n" +
-	"\x02ok\x18\x02 \x01(\bR\x02okB\tZ\a./pb;pbb\x06proto3"
+	"\x02ok\x18\x02 \x01(\bR\x02ok\"M\n" +
+	"\vAppAddQuery\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12*\n" +
+	"\apayload\x18\x02 \x01(\v2\x10.user.AppPayloadR\apayload\"\x15\n" +
+	"\x13AppAddQueryResponse\"T\n" +
+	"\n" +
+	"AppPayload\x12&\n" +
+	"\x0eaccountPayload\x18\x01 \x01(\tR\x0eaccountPayload\x12\x1e\n" +
+	"\n" +
+	"pwdPayload\x18\x02 \x01(\tR\n" +
+	"pwdPayload\"\x1e\n" +
+	"\fAppListQuery\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\";\n" +
+	"\x14AppListQueryResponse\x12#\n" +
+	"\x05lists\x18\x01 \x03(\v2\r.user.AppInfoR\x05lists\"Y\n" +
+	"\aAppInfo\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
+	"\apayload\x18\x03 \x01(\v2\x10.user.AppPayloadR\apayloadB\tZ\a./pb;pbb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -607,7 +915,7 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_user_proto_goTypes = []any{
 	(*UserLoginQuery)(nil),               // 0: user.UserLoginQuery
 	(*UserLoginQueryResponse)(nil),       // 1: user.UserLoginQueryResponse
@@ -619,14 +927,23 @@ var file_user_proto_goTypes = []any{
 	(*MasterKeySetQueryResponse)(nil),    // 7: user.MasterKeySetQueryResponse
 	(*MasterKeyVerifyQuery)(nil),         // 8: user.MasterKeyVerifyQuery
 	(*MasterKeyVerifyQueryResponse)(nil), // 9: user.MasterKeyVerifyQueryResponse
+	(*AppAddQuery)(nil),                  // 10: user.AppAddQuery
+	(*AppAddQueryResponse)(nil),          // 11: user.AppAddQueryResponse
+	(*AppPayload)(nil),                   // 12: user.AppPayload
+	(*AppListQuery)(nil),                 // 13: user.AppListQuery
+	(*AppListQueryResponse)(nil),         // 14: user.AppListQueryResponse
+	(*AppInfo)(nil),                      // 15: user.AppInfo
 }
 var file_user_proto_depIdxs = []int32{
-	3, // 0: user.UserLoginQueryResponse.user:type_name -> user.UserInfo
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	3,  // 0: user.UserLoginQueryResponse.user:type_name -> user.UserInfo
+	12, // 1: user.AppAddQuery.payload:type_name -> user.AppPayload
+	15, // 2: user.AppListQueryResponse.lists:type_name -> user.AppInfo
+	12, // 3: user.AppInfo.payload:type_name -> user.AppPayload
+	4,  // [4:4] is the sub-list for method output_type
+	4,  // [4:4] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
@@ -640,7 +957,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
