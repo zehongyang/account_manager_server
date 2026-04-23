@@ -223,7 +223,7 @@ func AppListQuery() bee.Handler {
 			req.ResponseError(http.StatusBadRequest)
 			return
 		}
-		apps, err := dbApp.List(uid, q.Id, 20)
+		apps, err := dbApp.List(uid, q.Id, 5)
 		if err != nil {
 			logger.Error().Err(err).Any("uid", uid).Any("q", &q).Msg("AppListQuery")
 			req.ResponseError(http.StatusInternalServerError)
