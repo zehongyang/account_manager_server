@@ -42,6 +42,7 @@ message UserInfoModifyQueryResponse{
 message MasterKeySetQuery{
   string payload = 1;
   string ciphertext = 2;
+  repeated AppInfo apps = 3;
 }
 
 message MasterKeySetQueryResponse{
@@ -76,6 +77,7 @@ message AppPayload{
 //应用列表
 message AppListQuery{
   int64 id = 1;
+  bool all = 2;
 }
 
 message AppListQueryResponse{
@@ -86,4 +88,22 @@ message AppInfo{
   int64 id = 1;
   string name = 2;
   AppPayload payload = 3;
+}
+
+message AppModifyQuery{
+  int64 id = 1;
+  string name = 2;
+  AppPayload payload = 3;
+}
+
+message AppModifyQueryResponse{
+
+}
+
+message AppRemoveQuery{
+  int64 id = 1;
+}
+
+message AppRemoveQueryResponse{
+
 }

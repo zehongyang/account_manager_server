@@ -363,6 +363,7 @@ type MasterKeySetQuery struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Payload       string                 `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
 	Ciphertext    string                 `protobuf:"bytes,2,opt,name=ciphertext,proto3" json:"ciphertext,omitempty"`
+	Apps          []*AppInfo             `protobuf:"bytes,3,rep,name=apps,proto3" json:"apps,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -409,6 +410,13 @@ func (x *MasterKeySetQuery) GetCiphertext() string {
 		return x.Ciphertext
 	}
 	return ""
+}
+
+func (x *MasterKeySetQuery) GetApps() []*AppInfo {
+	if x != nil {
+		return x.Apps
+	}
+	return nil
 }
 
 type MasterKeySetQueryResponse struct {
@@ -697,6 +705,7 @@ func (x *AppPayload) GetPwdPayload() string {
 type AppListQuery struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	All           bool                   `protobuf:"varint,2,opt,name=all,proto3" json:"all,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -736,6 +745,13 @@ func (x *AppListQuery) GetId() int64 {
 		return x.Id
 	}
 	return 0
+}
+
+func (x *AppListQuery) GetAll() bool {
+	if x != nil {
+		return x.All
+	}
+	return false
 }
 
 type AppListQueryResponse struct {
@@ -842,6 +858,182 @@ func (x *AppInfo) GetPayload() *AppPayload {
 	return nil
 }
 
+type AppModifyQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Payload       *AppPayload            `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppModifyQuery) Reset() {
+	*x = AppModifyQuery{}
+	mi := &file_user_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppModifyQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppModifyQuery) ProtoMessage() {}
+
+func (x *AppModifyQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppModifyQuery.ProtoReflect.Descriptor instead.
+func (*AppModifyQuery) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *AppModifyQuery) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *AppModifyQuery) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *AppModifyQuery) GetPayload() *AppPayload {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+type AppModifyQueryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppModifyQueryResponse) Reset() {
+	*x = AppModifyQueryResponse{}
+	mi := &file_user_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppModifyQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppModifyQueryResponse) ProtoMessage() {}
+
+func (x *AppModifyQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppModifyQueryResponse.ProtoReflect.Descriptor instead.
+func (*AppModifyQueryResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{17}
+}
+
+type AppRemoveQuery struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppRemoveQuery) Reset() {
+	*x = AppRemoveQuery{}
+	mi := &file_user_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppRemoveQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppRemoveQuery) ProtoMessage() {}
+
+func (x *AppRemoveQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppRemoveQuery.ProtoReflect.Descriptor instead.
+func (*AppRemoveQuery) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *AppRemoveQuery) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type AppRemoveQueryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppRemoveQueryResponse) Reset() {
+	*x = AppRemoveQueryResponse{}
+	mi := &file_user_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppRemoveQueryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppRemoveQueryResponse) ProtoMessage() {}
+
+func (x *AppRemoveQueryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppRemoveQueryResponse.ProtoReflect.Descriptor instead.
+func (*AppRemoveQueryResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{19}
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -869,12 +1061,13 @@ const file_user_proto_rawDesc = "" +
 	"\x13UserInfoModifyQuery\x12\x16\n" +
 	"\x06avatar\x18\x01 \x01(\tR\x06avatar\x12\x1a\n" +
 	"\bnickname\x18\x02 \x01(\tR\bnickname\"\x1d\n" +
-	"\x1bUserInfoModifyQueryResponse\"M\n" +
+	"\x1bUserInfoModifyQueryResponse\"p\n" +
 	"\x11MasterKeySetQuery\x12\x18\n" +
 	"\apayload\x18\x01 \x01(\tR\apayload\x12\x1e\n" +
 	"\n" +
 	"ciphertext\x18\x02 \x01(\tR\n" +
-	"ciphertext\"-\n" +
+	"ciphertext\x12!\n" +
+	"\x04apps\x18\x03 \x03(\v2\r.user.AppInfoR\x04apps\"-\n" +
 	"\x19MasterKeySetQueryResponse\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\"6\n" +
 	"\x14MasterKeyVerifyQuery\x12\x1e\n" +
@@ -893,15 +1086,24 @@ const file_user_proto_rawDesc = "" +
 	"\x0eaccountPayload\x18\x01 \x01(\tR\x0eaccountPayload\x12\x1e\n" +
 	"\n" +
 	"pwdPayload\x18\x02 \x01(\tR\n" +
-	"pwdPayload\"\x1e\n" +
+	"pwdPayload\"0\n" +
 	"\fAppListQuery\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\";\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x10\n" +
+	"\x03all\x18\x02 \x01(\bR\x03all\";\n" +
 	"\x14AppListQueryResponse\x12#\n" +
 	"\x05lists\x18\x01 \x03(\v2\r.user.AppInfoR\x05lists\"Y\n" +
 	"\aAppInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
-	"\apayload\x18\x03 \x01(\v2\x10.user.AppPayloadR\apayloadB\tZ\a./pb;pbb\x06proto3"
+	"\apayload\x18\x03 \x01(\v2\x10.user.AppPayloadR\apayload\"`\n" +
+	"\x0eAppModifyQuery\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
+	"\apayload\x18\x03 \x01(\v2\x10.user.AppPayloadR\apayload\"\x18\n" +
+	"\x16AppModifyQueryResponse\" \n" +
+	"\x0eAppRemoveQuery\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\x18\n" +
+	"\x16AppRemoveQueryResponseB\tZ\a./pb;pbb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -915,7 +1117,7 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_user_proto_goTypes = []any{
 	(*UserLoginQuery)(nil),               // 0: user.UserLoginQuery
 	(*UserLoginQueryResponse)(nil),       // 1: user.UserLoginQueryResponse
@@ -933,17 +1135,23 @@ var file_user_proto_goTypes = []any{
 	(*AppListQuery)(nil),                 // 13: user.AppListQuery
 	(*AppListQueryResponse)(nil),         // 14: user.AppListQueryResponse
 	(*AppInfo)(nil),                      // 15: user.AppInfo
+	(*AppModifyQuery)(nil),               // 16: user.AppModifyQuery
+	(*AppModifyQueryResponse)(nil),       // 17: user.AppModifyQueryResponse
+	(*AppRemoveQuery)(nil),               // 18: user.AppRemoveQuery
+	(*AppRemoveQueryResponse)(nil),       // 19: user.AppRemoveQueryResponse
 }
 var file_user_proto_depIdxs = []int32{
 	3,  // 0: user.UserLoginQueryResponse.user:type_name -> user.UserInfo
-	12, // 1: user.AppAddQuery.payload:type_name -> user.AppPayload
-	15, // 2: user.AppListQueryResponse.lists:type_name -> user.AppInfo
-	12, // 3: user.AppInfo.payload:type_name -> user.AppPayload
-	4,  // [4:4] is the sub-list for method output_type
-	4,  // [4:4] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	15, // 1: user.MasterKeySetQuery.apps:type_name -> user.AppInfo
+	12, // 2: user.AppAddQuery.payload:type_name -> user.AppPayload
+	15, // 3: user.AppListQueryResponse.lists:type_name -> user.AppInfo
+	12, // 4: user.AppInfo.payload:type_name -> user.AppPayload
+	12, // 5: user.AppModifyQuery.payload:type_name -> user.AppPayload
+	6,  // [6:6] is the sub-list for method output_type
+	6,  // [6:6] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
@@ -957,7 +1165,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
